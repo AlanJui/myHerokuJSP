@@ -27,5 +27,8 @@
         <module name="myWebApp01" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="myWebApp01" target="1.6" />
+    </bytecodeTargetLevel>
   </component>
 </project>

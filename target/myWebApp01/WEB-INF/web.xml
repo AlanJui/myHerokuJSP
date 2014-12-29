@@ -4,4 +4,15 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+    <!--<servlet>-->
+        <!--<servlet-name>SayHello</servlet-name>-->
+        <!--<servlet-class>tw.ccc99.HelloServlet</servlet-class>-->
+    <!--</servlet>-->
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>SayHello</servlet-name>-->
+        <!--<url-pattern>/hello</url-pattern>-->
+    <!--</servlet-mapping>-->
+
 </web-app>
