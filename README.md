@@ -2,11 +2,13 @@
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+### 本容器主要目的 ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+提供 Java Web 使用的「專案模版」，適用於下列情境：
+
+* 執行環境： Heroku
+* 開發環境： Tomcat ＋MySQL
+* 開發工具：IntelliJ IDEA + Maven
 
 ### How do I get set up? ###
 
