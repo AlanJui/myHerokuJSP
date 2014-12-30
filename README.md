@@ -265,6 +265,7 @@ Create from archetype: org.apache.maven.archetypes:maven-archetype-webapp
 ##### 2. 在「Dashboard網頁」，執行「New App」，以建立新的 App。
 
 完成 App 建立之後，可自「Dashboard網頁」進入，看到如下之 App 管理畫面。
+
 ![Fig-3](https://lh6.googleusercontent.com/-GpmyZMq6nu8/VKHmtLoahDI/AAAAAAAAexI/Qs9YlnziFPc/w949-h553-no/2014-12-30_07-37-16.png)
 
 
