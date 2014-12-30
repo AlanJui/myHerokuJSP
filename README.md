@@ -1,6 +1,6 @@
 # 指引 #
 
-本文件目的，在於提供使用本容器產出，所需之「作業指引」：安裝、編譯、執行及佈署。
+本文件目的，在於提供使用本容器產出，所需之「作業指引」：安裝、編譯、執行、佈署及驗證。
 
 
 ### 本容器用途 ###
@@ -17,7 +17,7 @@
 
 * 作業系統：OS X V.10.10.1
 * Java 開發工具：JDK 7u71
-* Java EE Web 伺服器：Tomcat 7
+* Java EE Web 伺服器：Tomcat 7 V7.0.57
 * Build工具：Maven 3.2.3
 * 版本控管工具：git 2.2
 * 程式開發工具：Intellij IDEA 14 CE
@@ -70,9 +70,13 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
 4. 設定佈署使用者之帳號及角色（權限）
 5. 啟動 Tomcat 7
 
+#### 下載 Tomcat 7
+
+自官網「http://tomcat.apache.org/download-70.cgi 」，下載版本編號為：「7.0.57」的「tar.gz」壓縮檔案。
+
 #### 安裝 Tomcat 7
 
-將下載之壓縮檔案，先行「解壓縮」。然後將整個資料夾放入 Applications
+將下載之壓縮檔案：「apache-tomcat-7.0.57.tar.gz」，先行「解壓縮」。然後將整個資料夾放入 Applications
 
 #### 設定 server Port: 9090
 
@@ -199,13 +203,9 @@ $ . ~/.bash_profile
 作業之程序步驟：
 
 1. 使用 IntelliJ 建立 Maven Project 。
-
 2. 修訂 Maven Script 設定檔。
-
 3. 包裝成 war 檔案。
-
 4. 佈署到 Local 端的 Tomcat 伺服器。
-
 5. 佈署到雲端的 Heroku 伺服器。
 
 
@@ -214,6 +214,8 @@ $ . ~/.bash_profile
 在 IntelliJ ，執行「New Project」。
 
 Create from archetype: org.apache.maven.archetypes:maven-archetype-webapp
+
+![2014-12-30_07-12-42.png](https://lh3.googleusercontent.com/-f7hZreXKZv4/VKHkZrJtPiI/AAAAAAAAeww/wupM-a767CI/w661-h549-no/2014-12-30_07-12-42.png)
 
 ### 2. 修訂 Maven Script 設定檔。
 
@@ -240,12 +242,104 @@ Create from archetype: org.apache.maven.archetypes:maven-archetype-webapp
 
 ### 5. 佈署到雲端的 Heroku 伺服器。
 
-作業之程序步驟：
+此程序步驟可再細分如下之操作步驟：
 
 1. 在 Heroku 網站建立 App 。
-
 2. 在「終端機」登入 Heroku 。
-
 3. 在「終端機」安裝 Heroku Plugin 。
-
 4. 在「終端機」佈署到 Heroku 。
+5. 在「終端機」啟動 Heroku App。
+
+
+#### 在 Heroku 網站建立 App
+
+此程序步驟可再細分如下之操作步驟：
+
+1. 登入 Heroku 網站，進入個人專屬之「Dashboard網頁」 。
+2. 在「Dashboard網頁」，執行「New App」。
+
+
+##### 1. 登入 Heroku 網站，進入個人專屬之「Dashboard網頁」 。
+![Fig-2](https://lh6.googleusercontent.com/-U1BdQ_2_UQ0/VKHmsG4IOWI/AAAAAAAAexA/fGwOfkX5zaI/w949-h553-no/2014-12-30_07-36-55.png)
+
+##### 2. 在「Dashboard網頁」，執行「New App」，以建立新的 App。
+
+完成 App 建立之後，可自「Dashboard網頁」進入，看到如下之 App 管理畫面。
+![Fig-3](https://lh6.googleusercontent.com/-GpmyZMq6nu8/VKHmtLoahDI/AAAAAAAAexI/Qs9YlnziFPc/w949-h553-no/2014-12-30_07-37-16.png)
+
+
+#### 在「終端機」登入 Heroku
+
+```
+$ heroku login
+
+Enter your Heroku credentials.
+Email: alanjui.1960@gmail.com
+Password (typing will be hidden):
+Authentication successful.
+```
+
+#### 在「終端機」安裝 Heroku Plugin
+
+```
+$ heroku plugins:install https://github.com/heroku/heroku-deploy
+
+Installing heroku-deploy... done
+```
+
+#### 在「終端機」佈署到 Heroku
+
+```
+$ heroku deploy:war --war target/myWebApp01.war --app my-heroku-jsp
+
+Uploading target/myWebApp01.war.....done
+Deploying to my-heroku-jsp.................done
+Created release v6
+```
+
+#### 在「終端機」啟動 Heroku App
+
+在「終端機」輸入下列指令，要求作業系統啟動 Web 瀏覽器，進入 Heroku 所佈署的網站。
+```
+$ heroku open --app my-heroku-jsp
+
+Opening my-heroku-jsp... done
+```
+
+【註】：此步驟之程序可省去，直接啟動瀏覽器軟體，輸入網址：「https://my-heroku-jsp.herokuapp.com/ 」，透過網頁的輸出，驗證佈署的結果，是否成功。
+
+
+
+
+## 驗證作業
+
+本驗證作業設定之目標：
+
+* 在瀏覽器可見到「首頁（Home Page）」輸出的網頁畫面
+* 在瀏覽器輸入「網址」，負責對應的 Servlet ，能完成網頁輸出
+
+### 在瀏覽器可見到「首頁（Home Page）」輸出的網頁畫面
+
+1. 啟動瀏覽器。
+
+2. 輸入網址：https://my-heroku-jsp.herokuapp.com 。
+
+3. 瀏覽器輸出的畫面，可見到：「Hello World」文字。
+
+### 在瀏覽器輸入「網址」，負責對應的 Servlet ，能完成網頁輸出
+
+#### 【案例一】HelloServlet 處理「get /hello」之 HTTP Request
+
+1. 啟動瀏覽器。
+
+2. 輸入網址：https://my-heroku-jsp.herokuapp.com/hello 。
+
+3. 瀏覽器輸出的畫面，可見到：「Hello Servlet!!」文字。
+
+#### 【案例二】HiServlet 處理「get /hi」之 HTTP Request
+
+1. 啟動瀏覽器。
+
+2. 輸入網址：https://my-heroku-jsp.herokuapp.com/hi 。
+
+3. 瀏覽器輸出的畫面，可見到：「Hi every body, I am HiServlet!!」文字。

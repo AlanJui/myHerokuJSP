@@ -53,7 +53,7 @@
         <version>2.2</version>
         <configuration>
           <url>http://localhost:9090/manager/text</url>
-          <server>Tomcat</server>
+          <server>Tomcat7</server>
           <path>/myWebApp01</path>
         </configuration>
       </plugin>
