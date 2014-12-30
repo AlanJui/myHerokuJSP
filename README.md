@@ -22,6 +22,8 @@
 * 版本控管工具：git 2.2
 * 程式開發工具：Intellij IDEA 14 CE
 
+***
+
 ## 開發環境安裝及設定作業
 
 為能正常運作，使用者須先完成如下之相關「安裝、設定」作業。
@@ -57,7 +59,7 @@ source ~/.profile
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
 ```
 
-
+---
 
 
 ### 設定 Tomcat 作業
@@ -85,7 +87,7 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
 $ atom /Applications/apache-tomcat-7.0.57/conf/server.xml
 ```
 
-加入如下設定：
+先找到`<server>`......`</server>`這對 Tag ，然後將<Connector> Tag 裡的 `port` 屬性，自原先的「8080」，改成「**9090**」：
 ```
 <server ...>
   ......
@@ -103,18 +105,28 @@ $ atom /Applications/apache-tomcat-7.0.57/conf/server.xml
 $ atom /Applications/apache-tomcat-7.0.57/conf/tomcat-users.xml
 ```
 
-加入如下設定：
+先找到`<tomcat-users>`.....`<tomcat-users>`這對 Tag ，然後將加入如下設定：
+
+```
+<role rolename="manager-gui"/>
+<role rolename="manager-script"/>
+<user username="tomcat" password="tomcat" roles="manager-gui, manager-script"/>
+```
+
+最後合成的結果如下：
+
 ```
 <tomcat-users>
   <role rolename="manager-gui"/>
-  <role rolename="manager-script"/>
-  <user username="tomcat" password="tomcat" roles="manager-gui, manager-script"/>
+    <role rolename="manager-script"/>
+    <user username="tomcat" password="tomcat" roles="manager-gui, manager-script"/>
 </tomcat-users>
 ```
 
 #### 啟動 Tomcat 7
 
 執行啟動指令
+
 ```
 $ sh /Applications/apache-tomcat-7.0.57/bin/startup.sh
 
@@ -126,7 +138,7 @@ Using CLASSPATH:       /Applications/apache-tomcat-7.0.57/bin/bootstrap.jar:/App
 Tomcat started.
 ```
 
-
+---
 
 ### 設定 Maven 作業
 
@@ -198,6 +210,8 @@ export PATH=$M2:$PATH
 $ . ~/.bash_profile
 ```
 
+***
+
 ## 編譯、執行及佈署作業
 
 作業之程序步驟：
@@ -239,6 +253,12 @@ Create from archetype: org.apache.maven.archetypes:maven-archetype-webapp
 ```
 ＄ mvn tomcat7:deploy
 ```
+
+**【特別注意】：**
+
+上述的佈署指令執行過一次後，若要在進行第二次以後的佈署，得改用 redploy :
+
+    $ mvn tomcat7:reploy
 
 ### 5. 佈署到雲端的 Heroku 伺服器。
 
@@ -309,8 +329,7 @@ Opening my-heroku-jsp... done
 
 【註】：此步驟之程序可省去，直接啟動瀏覽器軟體，輸入網址：「https://my-heroku-jsp.herokuapp.com/ 」，透過網頁的輸出，驗證佈署的結果，是否成功。
 
-
-
+******
 
 ## 驗證作業
 
@@ -344,3 +363,44 @@ Opening my-heroku-jsp... done
 2. 輸入網址：https://my-heroku-jsp.herokuapp.com/hi 。
 
 3. 瀏覽器輸出的畫面，可見到：「Hi every body, I am HiServlet!!」文字。
+
+******
+
+##  除錯作業
+
+若是遇到無法正常執行問題狀況，請依下列步驟進行檢查及除錯。
+
+（1）第一次執行 deploy 指令，結果無法正常執行。
+
+```
+    $ mvn tomcat7:deploy
+```  
+
+**【解法】：請下列程序進行檢查及進行更正：**
+
+  - Tomcat 是否已啟動？
+
+  - Tomcat 設定作業裡，執行環境相關的設定是否已完成？
+
+    * Port 是否已變更成 9090？
+
+    * <tomcat-users> 裡該有的設定是否已完成？
+
+    `以上的檢查結果若是有錯，請於完成修訂後，重新啟動 Tomcat 。`
+
+  - Maven 設定檔 (settings.xml) 裡該有的 `<server>` 設定是否已完成？
+
+    `以上的檢查結果若是有錯，請於完成修訂後，重新啟動 Tomcat 。`
+
+
+（2）再次執行 deploy 指令，結果無法正常執行。
+
+```
+    $ mvn tomcat7:deploy
+```
+
+**【解法】：已完成 deploy 之後，欲再進行 deploy ，得改用 redeploy：**
+
+```
+$ mvn tomcat7:redeploy
+```
