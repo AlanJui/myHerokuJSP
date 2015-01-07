@@ -3,26 +3,49 @@
 本文件目的，在於提供使用本容器產出，所需之「作業指引」：安裝、編譯、執行、佈署及驗證。
 
 
-### 本容器用途 ###
+### 容器用途說明 ###
 
-提供 Java Web 開發專案，所需使用的「專案模版」。
+透過一個實際的 Java EE Web Project ，驗證 IntelliJ IDEA 14 Community Edition 版（以下稱 IntelliJ IC 14），可以透過 Maven 之助，開發使用「JSP、Servlet」軟體技術的 Web App 。
 
-#### 適用情境：
+IntelliJ IDEA 14 Community Edition 版能夠開發「Java EE Web App」的關鍵，就是 Maven Script - pom.xml 檔案中應有的「設定」。
+期望本容器中的 pom.xml 檔案，可提供有需要的朋友，作為採用
+IntelliJ IC 14 當 Java EE Web 開發使用「專案模版」的重要參考。
+
+
+驗證目標：
+  * 可使用 IntelliJ IC 14 進行 Servlet 程式編碼
+  * 完成程式撰碼的 Servlet 可先佈署到 Local 端的 Tomcat 7 伺服器，並能正常執行
+  * 在 Local 端開發環境完成的 Servlet 可佈署到 Heroku 的雲端平台運作
+
+#### 驗證環境：
+
+為達成上述「驗證目標」，本容器所納管之產出，適用於以下之情境。
 
 * 執行環境： Heroku
-* 開發環境： Tomcat ＋MySQL
-* 開發工具：IntelliJ IDEA CE + Maven
+* 開發環境： Tomcat
+* 開發工具： IntelliJ IC + Maven
 
 #### 規格明細：
 
-* 作業系統：OS X V.10.10.1
+符合上述「驗證環境」，所使用之軟體及其版本，其規格明細條列如下：
+
+* 作業系統：OS X 10.10.1
 * Java 開發工具：JDK 7u71
-* Java EE Web 伺服器：Tomcat 7 V7.0.57
+* Java EE Web 伺服器：Tomcat 7.0.57
 * Build工具：Maven 3.2.3
+* 程式開發工具：Intellij IDEA 14 IC
 * 版本控管工具：git 2.2
-* 程式開發工具：Intellij IDEA 14 CE
 
 ***
+
+本容器所納管之內容物，應如何操作才能正常使用，將依以下之章節架構，逐一說明：
+
+  * 開發環境安裝及設定作業
+  * 編譯、執行及佈署作業
+  * 驗證作業
+  * 除錯作業
+
+*****
 
 ## 開發環境安裝及設定作業
 
@@ -40,9 +63,9 @@
 先完成下列軟體之安裝：
 
 * Java開發工具：JDK 7u71
-* 版本控管工具：git 2.2
-* 程式開發工具：Intellij IDEA V14 CE
-* 純文字編輯器：atom V0.165.0 (可依個人喜好，替換此編輯器)
+* 版本控管工具： git 2.2
+* 程式開發工具： Intellij IC 14
+* 純文字編輯器： atom 0.165.0 (可依個人喜好，替換此編輯器)
 
 ### 設定環境變數
 
@@ -216,14 +239,14 @@ $ . ~/.bash_profile
 
 作業之程序步驟：
 
-1. 使用 IntelliJ 建立 Maven Project 。
+1. 使用 IntelliJ IC 建立 Maven Project 。
 2. 修訂 Maven Script 設定檔。
 3. 包裝成 war 檔案。
 4. 佈署到 Local 端的 Tomcat 伺服器。
 5. 佈署到雲端的 Heroku 伺服器。
 
 
-### 1. 使用 IntelliJ 建立 Maven Project
+### 1. 使用 IntelliJ IC 建立 Maven Project
 
 在 IntelliJ ，執行「New Project」。
 
