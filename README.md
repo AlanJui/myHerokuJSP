@@ -29,12 +29,11 @@ IntelliJ IC 14 當 Java EE Web 開發使用「專案模版」的重要參考。
 
 符合上述「驗證環境」，所使用之軟體及其版本，其規格明細條列如下：
 
-* 作業系統：OS X 10.10.1
+* 作業系統：OS X 10.10.1 / Windwos 7 / Windows Server 2008 R2
 * Java 開發工具：JDK 7u71
 * Java EE Web 伺服器：Tomcat 7.0.57
 * Build工具：Maven 3.2.3
-* 程式開發工具：Intellij IDEA 14 IC
-* 版本控管工具：git 2.2
+* 程式開發工具：Intellij IC 14
 
 ***
 
@@ -63,7 +62,6 @@ IntelliJ IC 14 當 Java EE Web 開發使用「專案模版」的重要參考。
 先完成下列軟體之安裝：
 
 * Java開發工具：JDK 7u71
-* 版本控管工具： git 2.2
 * 程式開發工具： Intellij IC 14
 * 純文字編輯器： atom 0.165.0 (可依個人喜好，替換此編輯器)
 
